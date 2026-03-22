@@ -1,0 +1,45 @@
+/*
+PROYECTO:
+
+Autor: Mirka Enriquez
+Fecha: 22-03-2026
+
+E/P/S
+ Entrada:
+    nombre del cliente
+    horario en el que reserva
+        1. 16:00
+        2. 21:00
+    tipo de mesa reservada 
+        para 2 personas
+        para 4 personas
+        para 6 personas
+ Proceso:
+    mostrar el menú
+    registro de la reserva
+        guardar nombre, hora y tipo de mesa
+        aumentar el contador de las mesas
+        rechazar si ya esta lleno
+    mostrar reservas:
+        recorrer el arreglo
+        mostrar el arreglo
+    buscar reserva
+        recorrer el arreglo de los nombres
+        comparar si coincide con alguno registrado
+    cancelar reserva
+        buscar la reserva 
+        desactivar la reserva
+        disminuir el contador
+    ver disponibilidad 
+        calcular las mesas disponibles segun el horario 
+    repetir hasta que el usuario decida salir
+ Salida:
+    mensaje con la confirmacion de la reserva
+    mensaje avisando que no hay disponibilidad
+    mensaje con las reservas realizadas
+    mensaje indicando si se encontro la reserva
+    mensaje indicando que la reserva no se ha encontrado
+    mensaje confirmando la cancelacion de la reserva
+    mensaje con el numero de mesas y el horario en el que se encuetran disponibles
+
+*/
