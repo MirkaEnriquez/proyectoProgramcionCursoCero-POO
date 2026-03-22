@@ -67,13 +67,14 @@ int main(){
        cout << " 4.- Cancelar reserva " << endl;
        cout << " 5.- Revisar disponibilidad" << endl;
        cout << " 6.- Salir " << endl;
+       cin >> opcion;
 
-
-
-
-
-
-
+       if (opcion < 1 || opcion > 6)
+       {
+        cout << "Opcion invalida. Por favor vuelva a intentar: " << endl;
+        cin >> opcion;
+       }
+       
 
 
 
