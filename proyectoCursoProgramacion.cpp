@@ -43,3 +43,46 @@ E/P/S
     mensaje con el numero de mesas y el horario en el que se encuetran disponibles
 
 */
+#include <iostream>
+using namespace std;
+
+int main(){
+
+    string nombres[24];
+    int horarios[24];
+    int tipodemesa[24];
+    int opcion = 0;
+
+
+    do
+    {
+       cout << "========================================= " << endl;
+       cout << " BIENVENIDO AL REGISTRO DE RESERVACIONES " << endl;
+       cout << "========================================= " << endl;
+
+       cout << " Menu de opciones" << endl;
+       cout << " 1.- Registro de la reserva " << endl;
+       cout << " 2.- Mostrar reservas " << endl;
+       cout << " 3.- Buscar reserva " << endl;
+       cout << " 4.- Cancelar reserva " << endl;
+       cout << " 5.- Revisar disponibilidad" << endl;
+       cout << " 6.- Salir " << endl;
+
+
+
+
+
+
+
+
+
+
+
+    } while (opcion != 6);
+    
+
+
+
+
+
+}
