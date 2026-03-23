@@ -48,6 +48,8 @@ using namespace std;
 
 void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int &n,
     int &ocupadas2_18, int &ocupadas4_18, int &ocupadas6_18, int &ocupadas2_20, int &ocupadas4_20, int &ocupadas6_20);
+void mostrarReservas(string nombres[], int horarios[], int tipodemesa[], bool activa[], int n);
+void buscarReserva(string nombres[], bool activa[], int n);
 
 
 
@@ -87,17 +89,20 @@ int main(){
        //Validar que opcion este dentro del rango de valores del menú
        if (opcion < 1 || opcion > 6)
        {
-        cout << "Opcion invalida. Por favor vuelva a intentar: " << endl;
-        cin >> opcion;
-       } else if (opcion == 1) //Llamo a la opcion que registra la reserva
+            cout << "Opcion invalida. Por favor vuelva a intentar: " << endl;
+            cin >> opcion;
+       } else if (opcion == 1) //Llamo a la funcion que registra la reserva
        {
             registrarReserva(nombres, horarios, tipodemesa, activa, n, ocupadas2_16,
                  ocupadas4_16, ocupadas6_16, ocupadas2_21, ocupadas4_21, ocupadas6_21);
+       } else if (opcion == 2)//Llamo a la funcion que muestra las reservas
+       {
+            mostrarReservas(nombres, horarios, tipodemesa,activa, n);
+       } else if (opcion == 3) //Llamo a la funcion que busca las reservas
+       {
+            buscarReserva(nombres, activa, n);
        }
        
-
-       
-
 
 
 
@@ -110,7 +115,7 @@ int main(){
 
 }
 
-
+//ARREGLO PARA REGISTRAR RESERVA
 void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int &n,
     int &ocupadas2_16, int &ocupadas4_16, int &ocupadas6_16, int &ocupadas2_21, int &ocupadas4_21, int &ocupadas6_21)
     {
@@ -141,6 +146,8 @@ void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool a
             cin >> tipodemesa[n];
         }
 
+
+        //Revisar  disponibilidad
         bool disponible = false;
 
         if(horarios[n] == 1){ // 16:00
@@ -172,6 +179,7 @@ void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool a
             }
         }
 
+        //Mostrar disponibilidad y aumentar el contador si es posible
         if(disponible == true){
             activa[n] = true;
             n++;
@@ -179,18 +187,43 @@ void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool a
         }
         else{
             cout << "No hay disponibilidad para completar la reserva" << endl;
-        }
-
-
-
-        
-
-
-
-
-
-
-
-
+        }        
      }
+
+//ARREGLO PARA MOSTRAR RESERVA
+
+void mostrarReservas(string nombres[], int horarios[], int tipodemesa[], bool activa[], int n)
+{
+    for(int i = 0; i < n; i++){
+        if(activa[i] == true){
+            cout << "Reservacion a nombre de " << nombres[i] << " - ";
+
+            if(horarios[i] == 1)
+                {cout << "16:00";
+              }  
+            else
+                {cout << "21:00";
+              }
+            cout << " - Mesa para " << tipodemesa[i] << endl;
+        }
+    }
+}
+
+//ARREGLO PARA BUSCAR RESERVA
+
+void buscarReserva(string nombres[], bool activa[], int n)
+{
+    string buscar;
+    cout << "Ingrese el nombre a buscar: ";
+    cin >> buscar;
+
+    for(int i = 0; i < n; i++){
+        if(nombres[i] == buscar && activa[i]){
+            cout << "Reserva encontrada." << endl;
+            return; //Investigue y esto aydua a que salga de la funcion y no imprima reserva no encontrada incluso cuando si la existe una 
+        }
+    }
+
+    cout << "Reserva no encontrada." << endl;
+}
             
