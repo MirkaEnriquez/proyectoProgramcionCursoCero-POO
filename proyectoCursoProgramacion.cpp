@@ -252,7 +252,7 @@ void cancelarReserva(string nombres[], int horarios[], int tipodemesa[], bool ac
 
             if(horarios[i] == 1){
                 if(tipodemesa[i] == 2) 
-                    ocupadas2_16--;  // reduzco el nuemero de mesas ocupadas dependiendo del horario y tipo de mesa
+                    ocupadas2_16--;  // reduzco el numero de mesas ocupadas dependiendo del horario y tipo de mesa
                 else if(tipodemesa[i] == 4)
                     ocupadas4_16--;
                 else if(tipodemesa[i] == 6) 
