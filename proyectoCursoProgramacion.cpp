@@ -52,6 +52,8 @@ void mostrarReservas(string nombres[], int horarios[], int tipodemesa[], bool ac
 void buscarReserva(string nombres[], bool activa[], int n);
 void cancelarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int n,
     int &ocupadas2_16, int &ocupadas4_16, int &ocupadas6_16, int &ocupadas2_21, int &ocupadas4_21, int &ocupadas6_21);
+void verDisponibilidad(int mesas2, int mesas4, int mesas6, int ocupadas2_16, int ocupadas4_16, int ocupadas6_16,
+    int ocupadas2_21, int ocupadas4_21, int ocupadas6_21);
 
 
 
@@ -109,21 +111,11 @@ int main(){
                  ocupadas4_16, ocupadas6_16, ocupadas2_21, ocupadas4_21, ocupadas6_21);
        } else if (opcion == 5)
        {
-        /* code */
+            verDisponibilidad(mesas2, mesas4, mesas6, ocupadas2_16, ocupadas4_16, ocupadas6_16,ocupadas2_21, ocupadas4_21, ocupadas6_21);
        }
        
-       
-       
-
-
-
     } while (opcion != 6);
-    
-
-
-
-
-
+   
 }
 
 //ARREGLO PARA REGISTRAR RESERVA
@@ -238,6 +230,7 @@ void buscarReserva(string nombres[], bool activa[], int n)
     cout << "Reserva no encontrada." << endl;
 }
 
+//ARREGLO PARA CANCELAR RESERVA
 void cancelarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int n,
     int &ocupadas2_16, int &ocupadas4_16, int &ocupadas6_16, int &ocupadas2_21, int &ocupadas4_21, int &ocupadas6_21)
 {
@@ -273,5 +266,20 @@ void cancelarReserva(string nombres[], int horarios[], int tipodemesa[], bool ac
     }
 
     cout << "Reserva no encontrada." << endl;// en caso de no encontrar la reserva
+}
+
+//ARREGLOPARA VER DISPONIBILIDAD
+void verDisponibilidad(int mesas2, int mesas4, int mesas6, int ocupadas2_16, int ocupadas4_16, int ocupadas6_16,
+    int ocupadas2_21, int ocupadas4_21, int ocupadas6_21)
+{
+    cout << "--- Horario 16:00 ---" << endl;
+    cout << "Mesas para 2: " << mesas2 - ocupadas2_16 << endl;
+    cout << "Mesas para 4: " << mesas4 - ocupadas4_16 << endl;
+    cout << "Mesas para 6: " << mesas6 - ocupadas6_16 << endl;
+
+    cout << "--- Horario 21:00 ---" << endl;
+    cout << "Mesas para 2: " << mesas2 - ocupadas2_21 << endl;
+    cout << "Mesas para 4: " << mesas4 - ocupadas4_21 << endl;
+    cout << "Mesas para 6: " << mesas6 - ocupadas6_21 << endl;
 }
             
