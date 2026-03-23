@@ -95,11 +95,12 @@ int main(){
        cin >> opcion;
 
        //Validar que opcion este dentro del rango de valores del menú
-       if (opcion < 1 || opcion > 6)
+       while (opcion < 1 || opcion > 6)
        {
             cout << "Opcion invalida. Por favor vuelva a intentar: " << endl;
             cin >> opcion;
-       } else if (opcion == 1) //Llamo a la funcion que registra la reserva
+       } 
+       if (opcion == 1) //Llamo a la funcion que registra la reserva
        {
             registrarReserva(nombres, horarios, tipodemesa, activa, n, ocupadas2_16,
                  ocupadas4_16, ocupadas6_16, ocupadas2_21, ocupadas4_21, ocupadas6_21);
@@ -207,18 +208,27 @@ void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool a
 
 void mostrarReservas(string nombres[], int horarios[], int tipodemesa[], bool activa[], int n)
 {
+    bool hay = false; 
+
     for(int i = 0; i < n; i++){
         if(activa[i] == true){
+            hay = true;
+
             cout << "Reservacion a nombre de " << nombres[i] << " - ";
 
-            if(horarios[i] == 1)
-                {cout << "16:00";
-              }  
-            else
-                {cout << "21:00";
-              }
+            if(horarios[i] == 1){
+                cout << "16:00";
+            }  
+            else{
+                cout << "21:00";
+            }
+
             cout << " - Mesa para " << tipodemesa[i] << endl;
         }
+    }
+
+    if(!hay){
+        cout << "No hay reservas registradas." << endl;
     }
 }
 
