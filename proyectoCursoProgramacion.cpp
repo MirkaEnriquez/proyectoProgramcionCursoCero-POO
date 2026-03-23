@@ -46,12 +46,22 @@ E/P/S
 #include <iostream>
 using namespace std;
 
+
 int main(){
 
     string nombres[24];
     int horarios[24];
     int tipodemesa[24];
     int opcion = 0;
+
+    bool activa[20];
+
+    int n = 0;
+
+    int mesas2 = 5, mesas4 = 4, mesas6 = 3;
+
+    int ocupadas2_16 = 0, ocupadas4_16 = 0, ocupadas6_16 = 0;
+    int ocupadas2_21 = 0, ocupadas4_21 = 0, ocupadas6_21 = 0;
 
 
     do
@@ -73,7 +83,13 @@ int main(){
        {
         cout << "Opcion invalida. Por favor vuelva a intentar: " << endl;
         cin >> opcion;
+       } else if (opcion == 1)
+       {
+            registrarReserva(nombres, horarios, tipodemesa, activa, n, ocupadas2_16,
+                 ocupadas4_16, ocupadas6_16, ocupadas2_21, ocupadas4_21, ocupadas6_21);
        }
+       
+
        
 
 
@@ -87,3 +103,41 @@ int main(){
 
 
 }
+
+
+void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int &n,
+                      int &ocupadas2_18, int &ocupadas4_18, int &ocupadas6_18,
+                      int &ocupadas2_20, int &ocupadas4_20, int &ocupadas6_20)
+    {
+       
+        cout << "Ingrese el nombre: " << endl;
+        cin >> nombres[n];
+
+        cout << "Eliga el horario: " << endl;
+        cout << "1.- 16:00" << endl;
+        cout << "2.- 21:00" << endl;
+        cin >> horarios[n];
+
+        while(horarios[n] != 1 && horarios[n] != 2){
+            cout << "Opcion invalida. Por favor vuelva a intentar: ";
+            cin >> horarios[n];
+
+        cout << "Tipo de mesa (Para 2, 4 o 6 personas): ";
+        cin >> tipodemesa[n];
+
+        while (tipodemesa[n] != 2 && tipodemesa[n] !=4 && tipodemesa[n] !=6)
+        {
+            cout << "Opcion invalida. Por favor vuelva a intentar: ";
+            cin >> tipodemesa[n];
+        }
+        
+}
+
+
+
+
+
+
+
+     }
+            
