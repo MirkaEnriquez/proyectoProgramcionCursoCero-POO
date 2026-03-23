@@ -47,9 +47,11 @@ E/P/S
 using namespace std;
 
 void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int &n,
-    int &ocupadas2_18, int &ocupadas4_18, int &ocupadas6_18, int &ocupadas2_20, int &ocupadas4_20, int &ocupadas6_20);
+    int &ocupadas2_16, int &ocupadas4_16, int &ocupadas6_16, int &ocupadas2_21, int &ocupadas4_21, int &ocupadas6_21);
 void mostrarReservas(string nombres[], int horarios[], int tipodemesa[], bool activa[], int n);
 void buscarReserva(string nombres[], bool activa[], int n);
+void cancelarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int n,
+    int &ocupadas2_16, int &ocupadas4_16, int &ocupadas6_16, int &ocupadas2_21, int &ocupadas4_21, int &ocupadas6_21);
 
 
 
@@ -101,7 +103,16 @@ int main(){
        } else if (opcion == 3) //Llamo a la funcion que busca las reservas
        {
             buscarReserva(nombres, activa, n);
+       } else if (opcion == 4)
+       {
+            cancelarReserva(nombres, horarios, tipodemesa, activa, n, ocupadas2_16,
+                 ocupadas4_16, ocupadas6_16, ocupadas2_21, ocupadas4_21, ocupadas6_21);
+       } else if (opcion == 5)
+       {
+        /* code */
        }
+       
+       
        
 
 
@@ -220,10 +231,47 @@ void buscarReserva(string nombres[], bool activa[], int n)
     for(int i = 0; i < n; i++){
         if(nombres[i] == buscar && activa[i]){
             cout << "Reserva encontrada." << endl;
-            return; //Investigue y esto aydua a que salga de la funcion y no imprima reserva no encontrada incluso cuando si la existe una 
+            return; //Investigue y esto ayuda a que salga de la funcion y no imprima "reserva no encontrada" incluso cuando si la existe una 
         }
     }
 
     cout << "Reserva no encontrada." << endl;
+}
+
+void cancelarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int n,
+    int &ocupadas2_16, int &ocupadas4_16, int &ocupadas6_16, int &ocupadas2_21, int &ocupadas4_21, int &ocupadas6_21)
+{
+    string buscar;
+    cout << "Nombre a cancelar: "; //Buscar el nombre a cancelar
+    cin >> buscar;
+
+    for(int i = 0; i < n; i++){ //recorrer el arreglo hasta encontrar el nombre
+        if(nombres[i] == buscar && activa[i]){
+
+            activa[i] = false;  // cancelo
+
+            if(horarios[i] == 1){
+                if(tipodemesa[i] == 2) 
+                    ocupadas2_16--;  // reduzco el nuemero de mesas ocupadas dependiendo del horario y tipo de mesa
+                else if(tipodemesa[i] == 4)
+                    ocupadas4_16--;
+                else if(tipodemesa[i] == 6) 
+                    ocupadas6_16--;
+            }
+            else{
+                if(tipodemesa[i] == 2) 
+                    ocupadas2_21--;
+                else if(tipodemesa[i] == 4) 
+                    ocupadas4_21--;
+                else if(tipodemesa[i] == 6) 
+                    ocupadas6_21--;
+            }
+
+            cout << "Reserva cancelada." << endl;
+            return;
+        }
+    }
+
+    cout << "Reserva no encontrada." << endl;// en caso de no encontrar la reserva
 }
             
