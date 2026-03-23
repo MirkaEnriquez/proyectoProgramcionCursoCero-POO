@@ -73,6 +73,10 @@ int main(){
     int ocupadas2_16 = 0, ocupadas4_16 = 0, ocupadas6_16 = 0;
     int ocupadas2_21 = 0, ocupadas4_21 = 0, ocupadas6_21 = 0;
 
+    for(int i = 0; i < 24; i++){
+        activa[i] = false;
+    }
+
 
     do
     {
@@ -122,6 +126,12 @@ int main(){
 void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int &n,
     int &ocupadas2_16, int &ocupadas4_16, int &ocupadas6_16, int &ocupadas2_21, int &ocupadas4_21, int &ocupadas6_21)
     {
+
+        //Validar para que no hayan mas de 24 reservas
+        if(n >= 24){
+        cout << "No se pueden registrar mas reservas.\n";
+        return;
+        }
        //Ingresar el nombre
         cout << "Ingrese el nombre: " << endl;
         cin >> nombres[n];
