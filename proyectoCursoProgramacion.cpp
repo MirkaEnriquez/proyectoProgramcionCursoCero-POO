@@ -46,6 +46,10 @@ E/P/S
 #include <iostream>
 using namespace std;
 
+void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int &n,
+    int &ocupadas2_18, int &ocupadas4_18, int &ocupadas6_18, int &ocupadas2_20, int &ocupadas4_20, int &ocupadas6_20);
+
+
 
 int main(){
 
@@ -54,7 +58,7 @@ int main(){
     int tipodemesa[24];
     int opcion = 0;
 
-    bool activa[20];
+    bool activa[24];
 
     int n = 0;
 
@@ -66,6 +70,7 @@ int main(){
 
     do
     {
+        //Mostrar el menú
        cout << "========================================= " << endl;
        cout << " BIENVENIDO AL REGISTRO DE RESERVACIONES " << endl;
        cout << "========================================= " << endl;
@@ -79,11 +84,12 @@ int main(){
        cout << " 6.- Salir " << endl;
        cin >> opcion;
 
+       //Validar que opcion este dentro del rango de valores del menú
        if (opcion < 1 || opcion > 6)
        {
         cout << "Opcion invalida. Por favor vuelva a intentar: " << endl;
         cin >> opcion;
-       } else if (opcion == 1)
+       } else if (opcion == 1) //Llamo a la opcion que registra la reserva
        {
             registrarReserva(nombres, horarios, tipodemesa, activa, n, ocupadas2_16,
                  ocupadas4_16, ocupadas6_16, ocupadas2_21, ocupadas4_21, ocupadas6_21);
@@ -106,32 +112,79 @@ int main(){
 
 
 void registrarReserva(string nombres[], int horarios[], int tipodemesa[], bool activa[], int &n,
-                      int &ocupadas2_18, int &ocupadas4_18, int &ocupadas6_18,
-                      int &ocupadas2_20, int &ocupadas4_20, int &ocupadas6_20)
+    int &ocupadas2_16, int &ocupadas4_16, int &ocupadas6_16, int &ocupadas2_21, int &ocupadas4_21, int &ocupadas6_21)
     {
-       
+       //Ingresar el nombre
         cout << "Ingrese el nombre: " << endl;
         cin >> nombres[n];
 
+        //Elegir horario
         cout << "Eliga el horario: " << endl;
         cout << "1.- 16:00" << endl;
         cout << "2.- 21:00" << endl;
         cin >> horarios[n];
 
+        //Validar horario
         while(horarios[n] != 1 && horarios[n] != 2){
             cout << "Opcion invalida. Por favor vuelva a intentar: ";
             cin >> horarios[n];
+            }
 
+        //Elegir el tipo de mesa 
         cout << "Tipo de mesa (Para 2, 4 o 6 personas): ";
         cin >> tipodemesa[n];
 
+        //Validar el tipo de mesa
         while (tipodemesa[n] != 2 && tipodemesa[n] !=4 && tipodemesa[n] !=6)
         {
             cout << "Opcion invalida. Por favor vuelva a intentar: ";
             cin >> tipodemesa[n];
         }
+
+        bool disponible = false;
+
+        if(horarios[n] == 1){ // 16:00
+            if(tipodemesa[n] == 2 && ocupadas2_16 < 5){
+                ocupadas2_16++; 
+                disponible = true;
+            }
+            else if(tipodemesa[n] == 4 && ocupadas4_16 < 4){
+                ocupadas4_16++;
+                disponible = true;
+            }
+            else if(tipodemesa[n] == 6 && ocupadas6_16 < 3){
+                ocupadas6_16++; 
+                disponible = true;
+            }
+        }
+        else{ // 21:00
+            if(tipodemesa[n] == 2 && ocupadas2_21 < 5){
+                ocupadas2_21++; 
+                disponible = true;
+            }
+            else if(tipodemesa[n] == 4 && ocupadas4_21 < 4){
+                ocupadas4_21++; 
+                disponible = true;
+            }
+            else if(tipodemesa[n] == 6 && ocupadas6_21 < 3){
+                ocupadas6_21++; 
+                disponible = true;
+            }
+        }
+
+        if(disponible == true){
+            activa[n] = true;
+            n++;
+            cout << "Reserva registrada exitosamente" << endl;
+        }
+        else{
+            cout << "No hay disponibilidad para completar la reserva" << endl;
+        }
+
+
+
         
-}
+
 
 
 
